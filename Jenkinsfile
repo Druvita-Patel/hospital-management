@@ -37,11 +37,7 @@ pipeline {
                           eureka-server
                         do
                           echo "Building Maven service: $service"
-                          docker run --rm \
-                            -v "$PWD:/workspace" \
-                            -w "/workspace/$service" \
-                            maven:3.9.9-eclipse-temurin-21 \
-                            mvn clean package -DskipTests
+                         mvn -f "$service/pom.xml" clean package -DskipTests
 
                           echo "Building Docker image: $service"
                           docker build \
