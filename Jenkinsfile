@@ -26,6 +26,10 @@ pipeline {
                         set -eu
                         echo "$DOCKER_TOKEN" | docker login \
                           -u "$DOCKER_USER" --password-stdin
+			export JAVA_HOME=/opt/java25
+			export PATH="$JAVA_HOME/bin:$PATH"
+			java -version
+			mvn -version
 
                         for service in \
                           api-gateway \
